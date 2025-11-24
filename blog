@@ -29,6 +29,7 @@ new_post() {
     if [ -n "$new_file" ]; then
         echo -e "${GREEN}文章已创建: $new_file${NC}"
         echo -e "${GREEN}文章路径: $HOME/Myblog${NC}"
+        vim $new_file
     fi
 }
 
