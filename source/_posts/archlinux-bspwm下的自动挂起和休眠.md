@@ -40,18 +40,20 @@ series:
     xidlehook \
     --not-when-audio \
     --not-when-fullscreen \
-    --timer 30 \
+    --timer 60 \
         'light -U 40' \
         'light -A 40' \
-    --timer 180 \
+    --timer 120 \
         'betterlockscreen -l dim' \
         '' \
     --timer 300 \
-        'systemctl suspend' \
-        '' \
-    --timer 600 \
-        'systemctl hibernate' \
+        'systemctl suspend-then-hibernate' \
         '' &
+```
+
+3. 可能需要执行下面这行
+``` bash
+    sudo ln -s /usr/lib/systemd/system/nvidia-suspend-then-hibernate.service /etc/systemd/system/systemd-suspend-then-hibernate.service.wants/
 ```
 
 ## 确保合盖和手动挂起时锁屏 (xss-lock)
