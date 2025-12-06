@@ -53,3 +53,9 @@ jobs:
         run: |
           hexo clean
           hexo generate --deploy
+
+      # 7. 同步静态文件到服务器
+      - name: Deploy to Server via Rsync
+        run: |
+          ssh-keyscan -p 22 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          rsync -avz --delete -e "ssh -p 22" ./public/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/
